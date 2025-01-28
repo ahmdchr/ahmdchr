@@ -1,4 +1,4 @@
-<h1 align="center">About me~</h1>
+<h1 align="center">⚜️About me⚜️</h1>
 <h2 align="center"> 
   <img src="https://readme-typing-svg.herokuapp.com?color=0C93D6&center=true&vCenter=true&width=500&lines=Hi+%F0%9F%91%8B,+My+name+is+Ahmed+Chourou!;I'm+a+student+in+Computer+Science,;From+Tunisia;Welcome+to+my+GitHub!" alt="Typing SVG">
 </h2>
