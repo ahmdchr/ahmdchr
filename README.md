@@ -7,8 +7,17 @@
 
 ###
 
-<p align="left">🔭 I’m currently working on my ISS project<br>👯 I’m looking to collaborate on a website creation project<br>🤝 I’m looking for help with game development<br>🌱 I’m currently learning React and Node.js</p>
+<p align="left">
+  ### 🚀 **What I'm Working On**  
+- **ISS Project**: A 2D pixel videogame.
+  
+---
 
+### 🧠 **What I'm Learning**
+- 🌐 **React.js, Node.js**: implementing Front-end designs and Back-end architecture to websites.
+- 💻 **Express.js, Bootstrap**: Mastering frameworks.  
+
+---
 ###
 
 <br clear="both">
@@ -77,9 +86,12 @@
 
 ###
 
+<h1 align="center">📈 My GitHub Stats</h1>
+
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Cookieflot&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false&order=1" height="150" alt="stats graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Cookieflot&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false&order=2" height="150" alt="languages graph"  />
+  <img src="https://github-readme-stats.vercel.app/api?username=rayenmohad&show_icons=true&theme=react&hide_border=true&count_private=true" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rayenmohad&layout=compact&theme=react&hide_border=true" alt="Top Languages" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=rayenmohad&theme=react&hide_border=true" alt="GitHub Streak" />
 </div>
 
 ###
