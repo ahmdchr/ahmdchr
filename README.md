@@ -8,12 +8,10 @@
 ###
 
 <p align="left">
-  ---
 
 ### 🚀 **What I'm Working On**
 - **ISS Project**: A 2D pixel videogame.  
 
----
 
 ### 🧠 **What I'm Learning**
 - 🌐 **React.js, Node.js**: implementing Front-end designs and Back-end architecture to websites.
