@@ -85,7 +85,7 @@
 <div align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=cookieflot&show_icons=true&theme=react&hide_border=true&count_private=true" alt="GitHub Stats" /><br>
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=cookieflot&layout=compact&theme=react&hide_border=true" alt="Top Languages" /><br>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=cookieflot&theme=react&hide_border=true" alt="GitHub Streak" />
+  [![GitHub Streak](https://streak-stats.demolab.com/?user=Cookieflot)](https://git.io/streak-stats)
 </div>
 
 ###
