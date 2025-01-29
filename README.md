@@ -87,7 +87,5 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=cookieflot&layout=compact&theme=react&hide_border=true" alt="Top Languages" /><br>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=cookieflot&theme=react&hide_border=true" alt="GitHub Streak" />
 </div>
-<div align="center">
 ### ✍️ Random Dev Quote
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
-</div>
