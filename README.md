@@ -91,7 +91,5 @@
 ###
 
 <h1 align="center">✍️ Random Dev Quote</h1>
-<div align="center">
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
-</div>
 
