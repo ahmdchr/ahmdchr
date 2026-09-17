@@ -22,11 +22,17 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
+      - name: Restore immutable commit statistics
+        uses: actions/cache@v4
+        with:
+          path: .cache/commit-stats.json
+          key: profile-commits-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: profile-commits-v1-
       - name: Refresh both SVGs
         env:
           GH_TOKEN: ${{ github.token }}
