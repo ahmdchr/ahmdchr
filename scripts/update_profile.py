@@ -8,9 +8,57 @@ from datetime import datetime, timezone
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 from html import escape
+from urllib.parse import quote
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
+
+def line_totals(username, repos):
+    """Count user-authored commits reachable on owned public default branches.
+
+    Cache immutable commit stats; enumerate history afresh so deleted or
+    rewritten commits do not remain in the totals. Shared SHAs count once.
+    """
+    cache_path = ROOT / '.cache' / 'commit-stats.json'
+    try:
+        cache = json.loads(cache_path.read_text(encoding='utf-8'))
+    except (FileNotFoundError, ValueError):
+        cache = {}
+    seen = set()
+    added = deleted = commits = 0
+    for repo in repos:
+        full_name = repo['full_name']
+        page = 1
+        while True:
+            path = (f'/repos/{full_name}/commits?author={quote(username)}'
+                    f'&sha={quote(repo["default_branch"], safe="")}&per_page=100&page={page}')
+            try:
+                batch = api(path)
+            except HTTPError as error:
+                if error.code == 409:  # Repository has no Git history.
+                    break
+                raise
+            for commit in batch:
+                sha = commit['sha']
+                author = commit.get('author') or {}
+                if author.get('login', '').casefold() != username.casefold() or sha in seen:
+                    continue
+                seen.add(sha)
+                if sha not in cache:
+                    detail = api(f'/repos/{full_name}/commits/{sha}')
+                    cache[sha] = {
+                        'additions': detail['stats']['additions'],
+                        'deletions': detail['stats']['deletions'],
+                    }
+                added += cache[sha]['additions']
+                deleted += cache[sha]['deletions']
+                commits += 1
+            if len(batch) < 100:
+                break
+            page += 1
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache_path.write_text(json.dumps(cache, sort_keys=True), encoding='utf-8')
+    return {'added': added, 'deleted': deleted, 'net': added-deleted, 'commits': commits}
 
 def api(path):
     headers = {'Accept': 'application/vnd.github+json', 'User-Agent': 'ahmdchr-profile',
@@ -37,6 +85,7 @@ def collect(username):
             break
         page += 1
     return {
+        **line_totals(username, repos),
         'repos': len(repos),
         'stars': sum(repo['stargazers_count'] for repo in repos),
         'followers': profile['followers'], 'following': profile['following'],
@@ -45,9 +94,9 @@ def collect(username):
 
 def render(svg, stats):
     rows = {
-        470: ('Public Repos', f"{stats['repos']:,}"),
-        490: ('Repo Stars', f"{stats['stars']:,}  |  Followers: {stats['followers']:,}  |  Following: {stats['following']:,}"),
-        510: ('Updated UTC', stats['date']),
+        470: ('Public Repos', f"{stats['repos']:,}  |  Stars: {stats['stars']:,}"),
+        490: ('Commits', f"{stats['commits']:,}  |  Followers: {stats['followers']:,}"),
+        510: ('Lines (net)', f"{stats['net']:,} ({stats['added']:,}++, {stats['deleted']:,}--)"),
     }
     for y, (label, value) in rows.items():
         dots = '.' * max(1, 65 - len(label) - len(value) - 5)
@@ -56,11 +105,18 @@ def render(svg, stats):
                        f'<tspan class="key">{escape(label)}</tspan>:'
                        f'<tspan class="cc"> {dots} </tspan>'
                        f'<tspan class="value">{escape(value)}</tspan></text>')
+        if y == 510:
+            dark = 'fill="#161b22"' in svg
+            green, red = ('#3fb950', '#f85149') if dark else ('#1a7f37', '#cf222e')
+            replacement = replacement.replace(f"{stats['added']:,}++", f'<tspan fill="{green}">{stats["added"]:,}++</tspan>')
+            replacement = replacement.replace(f"{stats['deleted']:,}--", f'<tspan fill="{red}">{stats["deleted"]:,}--</tspan>')
         svg, count = re.subn(rf'<text\b(?=[^>]*\bx="390")(?=[^>]*\by="{y}")[^>]*>.*?</text>',
                              lambda _: replacement, svg, flags=re.DOTALL)
         if count != 1:
             raise ValueError(f'Expected exactly one stats row at y={y}; found {count}')
     ET.fromstring(svg)
+    svg = re.sub(r'<!-- Stats updated UTC: .*? -->\n?', '', svg)
+    svg = svg.replace('</svg>', f'<!-- Stats updated UTC: {stats["date"]} -->\n</svg>')
     return svg
 
 def main():
