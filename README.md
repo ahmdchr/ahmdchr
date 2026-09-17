@@ -1,11 +1,40 @@
 <img src="fastfetch.svg" width="100%" alt="Ahmed Chourou — Cybersecurity and Software Development" />
 
-I’m Ahmed Chourou, based in Tunis, Tunisia. My work spans security architecture, detection and response, and software development.
+```text
+ahmdchr@github
+────────────────────────────────────────────────────────────────────
+  Name ............. Ahmed Chourou
+  Location ......... Tunis, Tunisia
+  Focus ............ Cybersecurity & Software Development
+  Education ........ Computer Science · MedTech / SMU
+  Specialization ... Security Architecture
 
-- Built an AI-augmented SOC assistant using Python, FastAPI, Suricata, and a local Llama 3.2 model, with detection rules and MITRE ATT&CK mapping.
-- Designed and deployed a defense-in-depth DMZ architecture during my cybersecurity capstone internship at Tunisie Télécom, incorporating a WAF, reverse proxy, and T-Pot honeypot.
-- Developed full-stack applications with React, Node.js, and MongoDB, and automated scheduling workflows using Gemini and Microsoft Graph.
+  ~/toolbox
+  ├── languages .... Python, JavaScript, TypeScript, C/C++, Java, SQL
+  ├── development .. FastAPI, React, Node.js, Express, MongoDB
+  ├── defense ...... Wazuh, Suricata, Zeek, pfSense, ModSecurity
+  └── foundations .. Linux, Git, OWASP, MITRE ATT&CK
 
-**Tools:** Python · JavaScript · TypeScript · FastAPI · React · Node.js · Linux · Wazuh · Suricata · Zeek · pfSense
+  ~/selected-work
+  ├── AI-Augmented SOC Assistant
+  │   Suricata alerts → detection rules → local LLM analysis
+  │   Python · FastAPI · SQLite · Ollama
+  │
+  ├── Defense-in-Depth DMZ
+  │   Segmented networks, WAF, reverse proxy & honeypot
+  │   Tunisie Télécom · Cybersecurity capstone
+  │
+  └── AI Task Management Agent
+      Emails → structured tasks → calendar events
+      Gemini · Microsoft Graph
 
-[Connect on LinkedIn](https://linkedin.com/in/ahmedchourou)
+  ~/community
+  └── Securinets ... CTF support, workshops & training environments
+
+  ~/connect
+  ├── github ...... github.com/ahmdchr
+  └── linkedin .... linkedin.com/in/ahmedchourou
+────────────────────────────────────────────────────────────────────
+```
+
+[LinkedIn](https://linkedin.com/in/ahmedchourou) · [Repositories](https://github.com/ahmdchr?tab=repositories)
